@@ -4,20 +4,20 @@ namespace WeatherApp;
 
 public partial class WeatherPage : ContentPage
 {
-    public List<Models.List> WeatherList;
+	public List<Models.List> WeatherList;
 
     public double latitude { get; private set; }
     public double longitude { get; private set; }
 
-    public WeatherPage()
-    {
-        InitializeComponent();
+	public WeatherPage()
+	{
+		InitializeComponent();
         
-    }
+	}
 
-    protected async override void OnAppearing()
-    {
-        base.OnAppearing();
+	protected async override void OnAppearing()
+	{
+		base.OnAppearing();
         await GetLocation();
         await GetWeatherDataByLocation(latitude, longitude);
     }
@@ -63,20 +63,20 @@ public partial class WeatherPage : ContentPage
     public void UpdateUI(dynamic result)
     {
         WeatherList = new List<Models.List>();
-        foreach (var item in result.list)
-        {
-            WeatherList.Add(item);
-        }
-        CvWeather.ItemsSource = WeatherList;
+		foreach (var item in result.list)
+		{
+			WeatherList.Add(item);
+		}
+		CvWeather.ItemsSource = WeatherList;
 
-        LblCity.Text = result.city.name;
-        LblWeatherDescription.Text = result.list[0].weather[0].description;
+		LblCity.Text = result.city.name;
+		LblWeatherDescription.Text = result.list[0].weather[0].description;
         LblTemperature.Text = result.list[0].main.temperature + "¢XC";
-        LblHumidity.Text = result.list[0].main.humidity + "%";
+		LblHumidity.Text = result.list[0].main.humidity + "%";
         LblWind.Text = result.list[0].wind.speed + "m/s";
-        ImgWeatherIcon.Source = result.list[0].weather[0].customIcon;
+		ImgWeatherIcon.Source = result.list[0].weather[0].customIcon;
 
-    }
+	}
 }
 
 
